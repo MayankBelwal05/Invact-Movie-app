@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listMovies, deleteMovie } from '../redux/actions/movieActions';
 import MovieItem from './MovieItem';
+import AddMovie from './AddMovie';
 
 const MovieList = () => {
   const dispatch = useDispatch();
 
   const movieList = useSelector(state => state.movieList);
   const { movies, loading, error } = movieList;
+
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     dispatch(listMovies());
@@ -16,6 +19,10 @@ const MovieList = () => {
   return (
     <div>
       <h1>Movie Watchlist</h1>
+      <button onClick={() => setShowForm(!showForm)}>
+        {showForm ? 'Hide Form' : 'Add Movie'}
+      </button>
+      {showForm && <AddMovie />}
       {loading ? (
         <h2>Loading...</h2>
       ) : error ? (
