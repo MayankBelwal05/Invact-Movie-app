@@ -1,5 +1,3 @@
-// src/components/AddMovie.jsx
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMovie } from '../redux/actions/movieActions';
@@ -26,7 +24,6 @@ const AddMovie = () => {
       review,
     };
     dispatch(addMovie(movie));
-    // Reset the form
     setTitle('');
     setDescription('');
     setReleaseYear('');
@@ -37,68 +34,75 @@ const AddMovie = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Title:</label>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Description:</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></textarea>
-      </div>
-      <div>
-        <label>Release Year:</label>
-        <input
-          type="number"
-          value={releaseYear}
-          onChange={(e) => setReleaseYear(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Genre:</label>
-        <input
-          type="text"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>
+    <div className="container mt-4" >
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Title:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Description:</label>
+          <textarea
+            className="form-control"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label>Release Year:</label>
+          <input
+            type="number"
+            className="form-control"
+            value={releaseYear}
+            onChange={(e) => setReleaseYear(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Genre:</label>
+          <input
+            type="text"
+            className="form-control"
+            value={genre}
+            onChange={(e) => setGenre(e.target.value)}
+          />
+        </div>
+        <div className="form-check">
           <input
             type="checkbox"
+            className="form-check-input"
             checked={watched}
             onChange={(e) => setWatched(e.target.checked)}
           />
-          Watched
-        </label>
-      </div>
-      <div>
-        <label>Rating:</label>
-        <input
-          type="number"
-          min="1"
-          max="5"
-          value={rating}
-          onChange={(e) => setRating(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Review:</label>
-        <textarea
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
-        ></textarea>
-      </div>
-      <button type="submit">Add Movie</button>
-    </form>
+          <label className="form-check-label">Watched</label>
+        </div>
+        <div className="form-group">
+          <label>Rating:</label>
+          <input
+            type="number"
+            className="form-control"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            min="1"
+            max="10"
+          />
+        </div>
+        <div className="form-group">
+          <label>Review:</label>
+          <textarea
+            className="form-control"
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+          ></textarea>
+        </div>
+        <button type="submit" className="btn btn-primary">Add Movie</button>
+      </form>
+    </div>
   );
 };
 

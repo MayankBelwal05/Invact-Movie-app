@@ -12,17 +12,20 @@ const MovieDetails = () => {
   const movie = movies.find(movie => movie._id === id);
 
   return (
-    <div>
+    <div className="container mt-4">
       {movie ? (
-        <>
-          <h1>{movie.title}</h1>
-          <p>{movie.description}</p>
-          <p>{movie.releaseYear}</p>
-          <p>{movie.genre}</p>
-          <p>Watched: {movie.watched ? 'Yes' : 'No'}</p>
-          <Rating value={movie.rating} text={`${movie.rating} stars`} />
-          <p>Review: {movie.review}</p>
-        </>
+        <div className="card">
+          <div className="card-body">
+            <h2 className="card-title">{movie.title}</h2>
+            <h5 className="card-text"><strong>Description:</strong> {movie.description}</h5>
+            <h5 className="card-text"><strong>Release Year:</strong> {movie.releaseYear}</h5>
+            <h5 className="card-text"><strong>Genre:</strong> {movie.genre}</h5>
+            <h5 className="card-text"><strong>Watched:</strong> {movie.watched ? 'Yes' : 'No'}</h5>
+            <h5 className="card-text"><strong>Rating:</strong>{movie.rating} </h5>
+            
+            <h5 className="card-text"><strong>Review:</strong> {movie.review}</h5>
+          </div>
+        </div>
       ) : (
         <p>Loading...</p>
       )}

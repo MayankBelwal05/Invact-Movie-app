@@ -6,53 +6,133 @@ import { updateMovie, listMovies } from '../redux/actions/movieActions';
 const EditMovie = () => {
   const { id } = useParams();
   const history = useHistory();
-
   const dispatch = useDispatch();
 
-  const movieList = useSelector(state => state.movieList);
+  // Fetching movie details from Redux store
+  const movieList = useSelector((state) => state.movieList);
   const { movies } = movieList;
+  const movie = movies.find((movie) => movie._id === id);
 
-  const movie = movies.find(movie => movie._id === id);
-
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [releaseYear, setReleaseYear] = useState('');
-  const [genre, setGenre] = useState('');
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    releaseYear: '',
+    genre: '',
+    rating: 1,
+    watched: false
+  });
 
   useEffect(() => {
     if (!movie) {
       dispatch(listMovies());
     } else {
-      setTitle(movie.title);
-      setDescription(movie.description);
-      setReleaseYear(movie.releaseYear);
-      setGenre(movie.genre);
+      setFormData({
+        title: movie.title || '',
+        description: movie.description || '',
+        releaseYear: movie.releaseYear || '',
+        genre: movie.genre || '',
+        rating: movie.rating || 1,
+        watched: movie.watched || false
+      });
     }
-  }, [dispatch, movie]);
+  }, [dispatch, id, movie]);
+
+  const { title, description, releaseYear, genre, rating, watched } = formData;
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCheckboxChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.checked });
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(updateMovie(id, { title, description, releaseYear, genre }));
+    if (!movie || !movie._id) {
+      console.error('Movie object or _id is undefined');
+      return;
+    }
+    dispatch(updateMovie(movie._id, formData));
     history.push('/');
   };
 
   return (
-    <div>
-      <h1>Edit Movie</h1>
+    <div className="container mt-4">
+      <h2>Edit Movie</h2>
       <form onSubmit={submitHandler}>
-        <label>Title</label>
-        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-        
-        <label>Description</label>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-        
-        <label>Release Year</label>
-        <input type="number" value={releaseYear} onChange={(e) => setReleaseYear(e.target.value)} />
-        
-        <label>Genre</label>
-        <input type="text" value={genre} onChange={(e) => setGenre(e.target.value)} />
-        
-        <button type="submit">Update Movie</button>
+        <div className="form-group">
+          <label>Title</label>
+          <input
+            type="text"
+            className="form-control"
+            name="title"
+            value={title}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Description</label>
+          <textarea
+            className="form-control"
+            name="description"
+            value={description}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Release Year</label>
+          <input
+            type="number"
+            className="form-control"
+            name="releaseYear"
+            value={releaseYear}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Genre</label>
+          <input
+            type="text"
+            className="form-control"
+            name="genre"
+            value={genre}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Rating</label>
+          <input
+            type="number"
+            className="form-control"
+            min="1"
+            max="5"
+            name="rating"
+            value={rating}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-check mb-3">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="watchedCheckbox"
+            name="watched"
+            checked={watched}
+            onChange={handleCheckboxChange}
+          />
+          <label className="form-check-label" htmlFor="watchedCheckbox">
+            Watched
+          </label>
+        </div>
+
+        <button type="submit" className="btn btn-primary">Update Movie</button>
       </form>
     </div>
   );

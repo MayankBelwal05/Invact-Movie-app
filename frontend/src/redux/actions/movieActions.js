@@ -40,9 +40,19 @@ export const deleteMovie = (id) => async (dispatch) => {
   }
 };
 
+
+// export const updateMovie = (id) => async (dispatch) => {
+//   try {
+//     await api.patch(`/movies/${id}`);
+//     dispatch({ type: MOVIE_UPDATE_SUCCESS, payload: id });
+//   } catch (error) {
+//     dispatch({ type: MOVIE_LIST_FAIL, payload: error.message });
+//   }
+// };
+
 export const updateMovie = (id, movie) => async (dispatch) => {
   try {
-    const { data } = await api.put(`/movies/${id}`, movie);
+    const { data } = await api.patch(`/movies/${id}`, movie);
     dispatch({ type: MOVIE_UPDATE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: MOVIE_LIST_FAIL, payload: error.message });
