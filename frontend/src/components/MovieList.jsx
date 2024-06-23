@@ -5,12 +5,15 @@ import MovieItem from './MovieItem';
 import AddMovie from './AddMovie';
 import Navbar from './Navbar';
 import { Modal, Button } from 'react-bootstrap';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const MovieList = () => {
   const dispatch = useDispatch();
   const [showAddMovieModal, setShowAddMovieModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [artificialLoading, setArtificialLoading] = useState(true);
 
   const movieList = useSelector(state => state.movieList);
   const { movies, loading, error } = movieList;
@@ -18,6 +21,15 @@ const MovieList = () => {
   useEffect(() => {
     dispatch(listMovies());
   }, [dispatch]);
+
+  useEffect(() => {
+    // Adding artificial delay
+    const timer = setTimeout(() => {
+      setArtificialLoading(false);
+    }, 2000); // 2 seconds delay
+
+    return () => clearTimeout(timer); // Cleanup timer on unmount
+  }, []);
 
   const handleCloseModal = () => setShowModal(false);
 
@@ -30,11 +42,22 @@ const MovieList = () => {
   const handleCloseAddMovie = () => setShowAddMovieModal(false);
 
   return (
-    <div className="container mt-4" style={{ borderRadius:'20px',backgroundColor: 'black', color: 'white' }}>
+    <div className="container mt-4" style={{ borderRadius: '20px', backgroundColor: 'black', color: 'white' }}>
       <Navbar handleOpenAddMovie={handleOpenAddMovie} />
       <h1 style={{ textAlign: 'center', fontSize: '54px', fontFamily: 'Georgia, serif' }}>Movie Watchlist</h1>
-      {loading ? (
-        <h2>Loading...</h2>
+      {loading || artificialLoading ? (
+        <div className="row row-cols-1 row-cols-md-4">
+          {Array(4).fill().map((_, index) => (
+            <div key={index} className="col mb-4">
+              <div className="card mb-3" style={{ borderRadius: '20px', backgroundColor: 'black', color: 'white' }}>
+                <div className="card-body">
+                  <h3 className="card-title"><Skeleton width={200} /></h3>
+                  <p className="card-text"><Skeleton count={3} /></p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : error ? (
         <h2>{error}</h2>
       ) : (
@@ -72,8 +95,7 @@ const MovieList = () => {
 
           <Modal show={showAddMovieModal} onHide={handleCloseAddMovie} size="lg">
             <Modal.Header closeButton>
-            <Modal.Title style={{ marginTop: '30px' }}>Add Movie</Modal.Title>
-
+              <Modal.Title style={{ marginTop: '30px' }}>Add Movie</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <AddMovie />
