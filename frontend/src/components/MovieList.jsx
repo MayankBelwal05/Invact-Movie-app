@@ -44,7 +44,7 @@ const MovieList = () => {
   return (
     <div className="container mt-4" style={{ borderRadius: '20px', backgroundColor: 'black', color: 'white' }}>
       <Navbar handleOpenAddMovie={handleOpenAddMovie} />
-      <h1 style={{ textAlign: 'center', fontSize: '54px', fontFamily: 'Georgia, serif' }}>Movie Watchlist</h1>
+      <h1 style={{ textAlign: 'center', fontSize: '50px', fontFamily: 'Georgia, serif' }}>Movie Watchlist</h1>
       {loading || artificialLoading ? (
         <div className="row row-cols-1 row-cols-md-4">
           {Array(4).fill().map((_, index) => (

@@ -12,7 +12,7 @@ const MovieItem = ({ movie, deleteMovie }) => {
   };
  
   return (
-    <div className="card mb-3" style={{ backgroundColor: '#add8e6', color: 'black' , fontFamily: 'Georgia, serif' }}>
+    <div className="card mb-3" style={{ backgroundColor: '#a7d2ff', color: 'black' , fontFamily: 'Georgia, serif' }}>
       <div className={`card-body d-flex flex-column ${movie.watched ? 'border-success' : 'border-danger'}`}>
         <h3 className="card-title" style={{ textAlign: 'center', textDecoration: 'underline', marginBottom: '25px' }}>
           {movie.title}

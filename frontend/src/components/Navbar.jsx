@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
   { label: "Watched 👁️", path: "/watched-movies" },
@@ -10,6 +10,8 @@ const navItems = [
 
 const Navbar = ({ handleOpenAddMovie }) => {
   const [hamburger, setHamburger] = useState(null);
+  const location = useLocation();
+  const showAddMovieButton = !location.pathname.includes('/watched') && !location.pathname.includes('/unwatched');
 
   const handleMenuOpen = (event) => {
     setHamburger(event.currentTarget);
@@ -31,7 +33,7 @@ const Navbar = ({ handleOpenAddMovie }) => {
             variant="h5"
             sx={{ flexGrow: 1, display: 'flex' }}
           >
-            <Link to="/" style={{ textDecoration: 'none', color: "white", marginLeft: '40px',fontSize: '32px', }}>📽️ Movie App</Link>
+            <Link to="/" style={{ textDecoration: 'none', color: "white", marginLeft: '40px',fontSize: '24px', }}>📽️ I N V A C T  Movie App</Link>
           </Typography>
           <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
             <IconButton
@@ -62,9 +64,11 @@ const Navbar = ({ handleOpenAddMovie }) => {
                   </Link>
                 </MenuItem>
               ))}
-              <MenuItem onClick={() => { handleMenuClose(); handleOpenAddMovie(); }}>
-                Add Movies
-              </MenuItem>
+              {showAddMovieButton && (
+                <MenuItem onClick={() => { handleMenuClose(); handleOpenAddMovie(); }}>
+                  Add Movies
+                </MenuItem>
+              )}
             </Menu>
           </Box>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -75,19 +79,22 @@ const Navbar = ({ handleOpenAddMovie }) => {
                 </Link>
               </Button>
             ))}
-            <Button
-              sx={{
-                color: '#fff',
-                backgroundColor: 'blue',
-                border: '1px solid white',
-                '&:hover': {
-                  backgroundColor: 'skyblue', // Change background color on hover if needed
-                },
-              }}
-              onClick={handleOpenAddMovie}
-            >
-              Add Movie
-            </Button>
+            {showAddMovieButton && (
+              <Button
+                sx={{
+                  color: 'white',
+                  backgroundColor: '#1251ff',
+                  border: '1px solid black',
+                  '&:hover': {
+                    backgroundColor: 'white', 
+                    color: 'black',
+                  },
+                }}
+                onClick={handleOpenAddMovie}
+              >
+                Add Movie
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </AppBar>
