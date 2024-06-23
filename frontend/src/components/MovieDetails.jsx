@@ -13,9 +13,9 @@ const MovieDetails = () => {
   return (
     <div className="container mt-4 d-flex justify-content-center">
       {movie ? (
-        <div className="card" style={{ backgroundColor: '#14cbef', color: '#000', width: '60%', minHeight: '400px', borderRadius: '10px' ,fontFamily: 'Georgia, serif'}}>
+        <div className="card" style={{ backgroundColor: 'lightgreen', color: '#000', width: '60%', minHeight: '400px', borderRadius: '10px' ,fontFamily: 'Georgia, serif'}}>
           <div className="card-body">
-            <h2 className="card-title" style={{ color: '#4B0082' }}>{movie.title}</h2>
+            <h2 className="card-title" style={{ color: 'black' }}>{movie.title}</h2>
             <hr />
             <h5 className="card-text"><strong>Description:</strong> {movie.description}</h5>
             <h5 className="card-text"><strong>Release Year:</strong> {movie.releaseYear}</h5>
