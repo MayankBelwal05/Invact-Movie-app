@@ -9,7 +9,7 @@ import {
 } from '../types';
 
 const api = axios.create({
-  baseURL: 'http://localhost:4500/api', 
+  baseURL: 'https://invact-movie-app-b8hz.onrender.com/api', 
 });
 
 export const listMovies = () => async (dispatch) => {
