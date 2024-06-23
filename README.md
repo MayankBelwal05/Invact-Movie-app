@@ -36,9 +36,23 @@ The Movie Watchlist application is a web-based tool that allows users to manage 
 ## Sample Design 🖊️
 Below are some sample designs for the Movie Watchlist app. Feel free to enhance the UI as you see fit.
 
-![Sample Design 1](https://via.placeholder.com/300)
-![Sample Design 2](https://via.placeholder.com/300)
-![Sample Design 3](https://via.placeholder.com/300)
+###MovieList
+
+![12](https://github.com/MayankBelwal05/Invact-Movie-app/assets/147751671/548b29ef-13d7-4907-8873-db1a2b2e4072)
+
+##AddMovie
+
+![12345](https://github.com/MayankBelwal05/Invact-Movie-app/assets/147751671/5e2470c2-d562-43fd-ada6-a873c858956e)
+
+###Watched
+
+![123](https://github.com/MayankBelwal05/Invact-Movie-app/assets/147751671/b06a4643-9e9c-421a-8c6f-f6247d1432a0)
+
+###Unwatched
+
+![1234](https://github.com/MayankBelwal05/Invact-Movie-app/assets/147751671/e203e1ab-28ad-4c3a-8f74-0aabcc0ead2d)
+
+
 
 ## Setup and Installation
 1. **Clone the repository:**
