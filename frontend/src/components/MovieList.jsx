@@ -26,7 +26,7 @@ const MovieList = () => {
     // Adding artificial delay
     const timer = setTimeout(() => {
       setArtificialLoading(false);
-    }, 2000); // 2 seconds delay
+    }, 1000); // 1 seconds delay
 
     return () => clearTimeout(timer); // Cleanup timer on unmount
   }, []);
