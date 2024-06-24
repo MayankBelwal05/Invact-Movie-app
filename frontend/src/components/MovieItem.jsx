@@ -23,7 +23,7 @@ const MovieItem = ({ movie, deleteMovie }) => {
         <p className="card-text">
           <strong>Watched:</strong> {movie.watched ? '🟢 Yes 👁️' : '🔴 No '}
         </p>
-        <p className="card-text"><strong>Rating:</strong> {movie.rating}</p>
+        <p className="card-text"><strong>Rating:</strong> {movie.rating} ⭐ </p>
         <div style={{ display: 'flex' }}>
           <Link to={`/edit/${movie._id}`} className="btn btn-primary" style={{ marginRight: '8px' }}>Edit</Link>
           <button onClick={handleDelete} className="btn btn-danger" style={{ marginRight: '8px' }}>Delete</button>

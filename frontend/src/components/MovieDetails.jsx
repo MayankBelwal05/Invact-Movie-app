@@ -21,7 +21,7 @@ const MovieDetails = () => {
             <h5 className="card-text"><strong>Release Year:</strong> {movie.releaseYear}</h5>
             <h5 className="card-text"><strong>Genre:</strong> {movie.genre}</h5>
             <h5 className="card-text"><strong>Watched:</strong> <span style={{ color: movie.watched ? '#28a745' : '#dc3545' }}>{movie.watched ? 'Yes 🟢' : 'No 🔴'}</span></h5>
-            <h5 className="card-text"><strong>Rating:</strong> {movie.rating} </h5>
+            <h5 className="card-text"><strong>Rating:</strong> {movie.rating} ⭐ </h5>
             <h5 className="card-text"><strong>Review:</strong> {movie.review}</h5>
           </div>
         </div>

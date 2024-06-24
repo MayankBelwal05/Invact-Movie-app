@@ -81,7 +81,7 @@ const MovieList = () => {
                   <p><strong>Release Year:</strong> {selectedMovie.releaseYear}</p>
                   <p><strong>Genre:</strong> {selectedMovie.genre}</p>
                   <p><strong>Watched:</strong> {selectedMovie.watched ? 'Yes 👁️' : 'No ❌'}</p>
-                  <p><strong>Rating:</strong> {selectedMovie.rating}</p>
+                  <p><strong>Rating:</strong> {selectedMovie.rating} ⭐</p>
                   <p><strong>Review:</strong> {selectedMovie.review}</p>
                 </>
               )}
